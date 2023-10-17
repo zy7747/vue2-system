@@ -22,6 +22,9 @@
             (videoInfo.updateTime ? videoInfo.updateTime : videoInfo.createTime)
           }}
         </li>
+        <li>
+          <a-rate v-model:value="starsNum" allow-half />
+        </li>
       </ul>
     </div>
     <div class="videoPlayer">
@@ -54,6 +57,7 @@ const props = defineProps({
     },
   },
 });
+const starsNum = ref<number>(3.7);
 const videoInfo = ref<any>({});
 const videoList = ref<any[]>([]);
 const videoPlayer: any = ref();

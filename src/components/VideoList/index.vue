@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="videoList">
-    <div v-for="(item, index) in videoList" :key="index">
+    <div v-for="(item, index) in videoList" :key="index" class="item">
       <VideoBox :videoInfo="item"></VideoBox>
     </div>
   </div>
@@ -25,5 +25,8 @@ defineProps({
   display: flex;
   align-content: start;
   flex-wrap: wrap;
+  // .item {
+  //   flex-grow: 1;
+  // }
 }
 </style>

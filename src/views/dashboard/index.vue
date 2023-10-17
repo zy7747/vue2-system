@@ -1,16 +1,19 @@
 <!-- 首页 -->
 <template>
   <div class="dashboard">
-    <a-carousel autoplay dots-class="slick-dots slick-thumb">
-      <template #customPaging="props">
-        <a>
-          <img :src="baseUrl + props.picture" />
-        </a>
-      </template>
-      <div v-for="item in allList" :key="item">
-        <img :src="baseUrl + item.picture" />
-      </div>
-    </a-carousel>
+    <div class="carouselPic">
+      <a-carousel arrows dots-class="slick-dots slick-thumb">
+        <template #customPaging="props">
+          <a>
+            <img :src="baseUrl + allList[props.i].picture" />
+          </a>
+        </template>
+
+        <div v-for="item in allList" :key="item.id">
+          <img :src="baseUrl + item.picture" class="pic" />
+        </div>
+      </a-carousel>
+    </div>
 
     <div class="hot">
       <ul class="hotVideoList">
@@ -103,6 +106,13 @@ const more = (key: any) => {
 }
 :deep .slick-thumb li.slick-active img {
   filter: grayscale(0%);
+}
+.carouselPic {
+  width: 50%;
+  .pic {
+    width: 100%;
+    height: 30rem;
+  }
 }
 
 .hot {

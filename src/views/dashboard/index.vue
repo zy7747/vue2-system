@@ -1,18 +1,9 @@
 <!-- 首页 -->
 <template>
   <div class="dashboard">
+    <!-- 首页动态展示 -->
     <div class="carouselPic">
-      <a-carousel arrows dots-class="slick-dots slick-thumb">
-        <template #customPaging="props">
-          <a>
-            <img :src="baseUrl + allList[props.i].picture" />
-          </a>
-        </template>
-
-        <div v-for="item in allList" :key="item.id">
-          <img :src="baseUrl + item.picture" class="pic" />
-        </div>
-      </a-carousel>
+      <Carousel :imageList="allList"></Carousel>
     </div>
 
     <div class="hot">
@@ -23,13 +14,9 @@
               {{ item.title }}
             </div>
             <div class="more">
-              <a
-                href="javascript:void(0);"
-                class="videoLink"
-                @click="more(key)"
-              >
-                {{ "更多" }}
-              </a>
+              <el-button size="small" @click="more(key)">
+                {{ "查看全部" }}<el-icon><ArrowRight /></el-icon>
+              </el-button>
             </div>
           </div>
           <ul class="videoBoxList">
@@ -55,15 +42,11 @@ import { router } from "@/router";
 const allList = ref<any[]>([]);
 const videoList = ref<any>({});
 
-const baseUrl = import.meta.env.VITE_APP_BASE_API;
-
-/*
- *
- */
 hotVideo().then((res: any) => {
   if (res.code === 200) {
     const { all, ...videos } = res.data;
     allList.value = all.videoList;
+
     videoList.value = videos;
   }
 });
@@ -71,7 +54,7 @@ hotVideo().then((res: any) => {
 //更多
 const more = (key: any) => {
   router.push({
-    path: "/" + key,
+    path: "/home/" + key,
   });
 };
 </script>
@@ -108,11 +91,8 @@ const more = (key: any) => {
   filter: grayscale(0%);
 }
 .carouselPic {
-  width: 50%;
-  .pic {
-    width: 100%;
-    height: 30rem;
-  }
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .hot {
@@ -121,13 +101,16 @@ const more = (key: any) => {
     .videoList {
       margin-top: 10px;
       width: 100%;
-      height: 30rem;
       .label {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 0 1rem;
         height: 15%;
+        .title {
+          font-size: 18px;
+          font-weight: 700;
+        }
       }
       .videoBoxList {
         overflow-x: auto;
@@ -136,7 +119,7 @@ const more = (key: any) => {
         width: 100%;
         .videoBox {
           margin-right: 1rem;
-          width: 25rem;
+          width: 15rem;
         }
       }
     }

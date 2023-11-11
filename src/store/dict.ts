@@ -9,8 +9,8 @@ export const useDictStore = defineStore({
     };
   },
   actions: {
-    async getDict() {
-      dictAllList().then((res: any) => {
+    getDict() {
+      return dictAllList().then((res: any) => {
         if (res.code === 200) {
           let dictList = res.data;
 

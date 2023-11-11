@@ -36,11 +36,16 @@
       </div>
     </div>
 
-    <a-card title="视频简介" class="profile">
+    <el-card class="box-card" shadow="always">
+      <template #header>
+        <div class="card-header">
+          <span>视频简介</span>
+        </div>
+      </template>
       <span class="profile-content" :title="videoInfo.profile">
         {{ videoInfo.profile }}
       </span>
-    </a-card>
+    </el-card>
   </div>
 </template>
 
@@ -91,12 +96,12 @@ const changeVideo = (src: string) => {
 
   .title {
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 1.5rem;
     padding: 1rem 0;
   }
 
   .videoInfo {
-    font-size: 1.5rem;
+    font-size: 1rem;
     display: flex;
     li {
       display: flex;
@@ -133,5 +138,9 @@ const changeVideo = (src: string) => {
     text-overflow: ellipsis;
     -webkit-line-clamp: 3; /* 指定显示的行数 */
   }
+}
+
+.box-card {
+  margin-top: 15px;
 }
 </style>

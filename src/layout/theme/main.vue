@@ -1,19 +1,24 @@
 <!--  -->
 <template>
   <div class="layout">
-    <a-layout>
-      <a-layout-header class="headerStyle">
+    <el-container style="position: relative">
+      <el-header class="headerStyle">
         <div class="header">
           <Logo />
-          <Navbar />
+          <div style="width: 30rem">
+            <SearchInput></SearchInput>
+          </div>
+
           <HeaderLine />
         </div>
-      </a-layout-header>
-
-      <a-layout-content class="contentStyle">
+        <div class="navbar">
+          <Navbar></Navbar>
+        </div>
+      </el-header>
+      <el-main class="contentStyle">
         <AppMain />
-      </a-layout-content>
-    </a-layout>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
@@ -23,38 +28,42 @@ import { HeaderLine, AppMain, Logo, Navbar } from "../components/index.ts";
 
 <style lang="scss" scoped>
 .layout {
-  position: relative;
   width: 100%;
   height: 100vh;
-  .headerStyle {
-    position: absolute;
+  .header {
+    top: 0;
+    position: sticky;
+    color: #fff;
+    z-index: 3;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    font-size: 0.75rem;
+  }
+  .headerStyle {
+    z-index: 2;
     padding: 0;
-    color: #fff;
-    width: 100% !important;
+    width: 100%;
     height: 8rem;
-    background: url("@/assets/image/banner.png") 0 0 no-repeat;
-    background-size: 100% 100%;
+    background: url("@/assets/image/picture/xiangru-chen.jpg") 0 -320px no-repeat;
+    background-size: 100%;
     line-height: normal;
-    z-index: 3;
-    .header {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 5rem;
-      font-size: 0.75rem;
-    }
+  }
+
+  .navbar {
+    width: 100%;
+    height: 3rem;
   }
 
   .contentStyle {
     display: flex;
     justify-content: center;
-    padding-top: 8rem;
-    height: calc(100vh);
+    height: calc(100vh - 8rem);
     width: 100%;
-    background-color: #fff;
-    overflow: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 </style>

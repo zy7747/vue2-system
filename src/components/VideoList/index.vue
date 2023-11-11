@@ -22,11 +22,8 @@ defineProps({
 <style lang="scss" scoped>
 .videoList {
   width: 100%;
-  display: flex;
-  align-content: start;
-  flex-wrap: wrap;
-  // .item {
-  //   flex-grow: 1;
-  // }
+  display: grid;
+  grid-template-columns: repeat(7, 14.28%);
+  align-content: flex-start;
 }
 </style>

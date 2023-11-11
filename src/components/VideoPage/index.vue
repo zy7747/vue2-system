@@ -1,6 +1,7 @@
 <!--  -->
 <template>
   <div class="videoPage">
+    <TermsFilter @changeValue="changeValue"></TermsFilter>
     <VideoList :videoList="videoList"></VideoList>
     <div class="pagination">
       <Pagination :total="total" @pageChange="pageChange"></Pagination>
@@ -39,7 +40,7 @@ const total = ref<any>(0);
  * */
 const queryParams = ref<any>({
   page: 1,
-  size: 20,
+  size: 21,
   type: props.type,
   videoType: null,
   region: null,
@@ -69,19 +70,20 @@ function pageChange(page: number, pageSize: number) {
   query();
 }
 
+function changeValue(queryData: any) {
+  queryParams.value = { ...queryParams.value, ...queryData };
+  query();
+}
+
 query();
 </script>
 
 <style lang="scss" scoped>
 .videoPage {
-  position: relative;
   height: 100%;
   .pagination {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    padding-bottom: 2rem;
-    background-color: #fff;
+    padding: 20px 0;
+    // background-color: #fff;
   }
 }
 </style>

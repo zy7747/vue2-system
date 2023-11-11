@@ -1,9 +1,8 @@
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_APP_BASE_API;
-// 创建实例
+
 const service = axios.create({
   baseURL: baseUrl,
-  // 超时时间
   timeout: 5000,
 });
 

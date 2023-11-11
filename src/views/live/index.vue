@@ -1,0 +1,8 @@
+<!-- 直播 -->
+<template>
+  <div class=""></div>
+</template>
+
+<script lang="ts" setup></script>
+
+<style lang="scss" scoped></style>

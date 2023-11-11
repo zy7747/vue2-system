@@ -67,25 +67,23 @@ const changeVideo = (item: any, index: number) => {
 
   .episode {
     width: 100%;
-    border-radius: 5px;
+    height: 87%;
     margin-top: 3%;
-    display: flex;
-    height: 40rem;
-    flex-wrap: wrap;
+    border-radius: 5px;
+    display: grid;
+    align-content: start;
+    grid-template-columns: repeat(4, 24%);
     overflow: auto;
-    align-content: flex-start;
     background-color: #f1f2f3;
     li {
-      width: 20%;
+      margin: 3px;
       height: 1.5625rem;
       padding: 0.3125rem;
-      margin: 0.3125rem;
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 0.3125rem;
       background-color: #ffffff;
-      overflow: hidden;
       a {
         font-size: 1rem;
         transform: scale(0.8);

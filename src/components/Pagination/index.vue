@@ -1,16 +1,15 @@
 <!--  -->
 <template>
   <div class="paginationBox">
-    <a-pagination
-      v-model:current.sync="page"
-      show-size-changer
-      show-quick-jumper
+    <el-pagination
+      v-model:current-page="page"
+      v-model:page-size="pageSize"
+      background
+      layout="prev, pager, next, jumper"
+      :page-sizes="pageSizes"
       :total="total"
-      @change="onChange"
-      :pageSizeOptions="pageSizes"
-      :defaultPageSize.sync="pageSize"
-      :responsive="true"
-      size="small"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
     />
   </div>
 </template>
@@ -21,7 +20,7 @@ import { defineEmits, ref } from "vue";
 const emit = defineEmits(["pageChange", "pageSizeChange"]);
 
 const page = ref<number>(1);
-const pageSize = ref<number>(20);
+const pageSize = ref<number>(21);
 
 defineProps({
   total: {
@@ -38,7 +37,11 @@ defineProps({
   },
 });
 
-const onChange = (page: number, pageSize: number) => {
+const handleSizeChange = () => {
+  emit("pageChange", page, pageSize);
+};
+
+const handleCurrentChange = () => {
   emit("pageChange", page, pageSize);
 };
 </script>

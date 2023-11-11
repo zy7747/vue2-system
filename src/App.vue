@@ -1,5 +1,5 @@
 <template>
-  <a-config-provider :locale="zhCN">
+  <el-config-provider :locale="zhCn">
     <section class="app-main">
       <RouterView #default="{ Component, route }">
         <keep-alive v-if="$route.meta.keepAlive">
@@ -12,17 +12,15 @@
         />
       </RouterView>
     </section>
-  </a-config-provider>
+  </el-config-provider>
 </template>
 
 <script lang="ts" setup>
+import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 import { useRoute } from "vue-router";
 import { ref, watch } from "vue";
 const route = useRoute();
 const title = ref("");
-
-//组件全局国际化
-import zhCN from "ant-design-vue/es/locale/zh_CN";
 
 watch(
   route,

@@ -7,7 +7,7 @@
     "dev": "vite --mode dev",
     "sit": "vite --mode sit",
     "prod": "vite --mode prod",
-    "sh:dev": "bash ./build/build.sh prod dev",
+    "sh:dev": "bash ./build/build.sh dev dev",
     "sh:prod": "bash ./build/build.sh prod prod",
     "build:dev": "vue-tsc && vite build --mode dev",
     "build:sit": "vue-tsc && vite build --mode sit",

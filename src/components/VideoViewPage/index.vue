@@ -29,7 +29,7 @@
     </div>
     <div class="videoPlayer">
       <div class="left">
-        <VideoPlayer ref="videoPlayer"></VideoPlayer>
+        <VideoPlayer :videoList="videoList" ref="videoPlayer"></VideoPlayer>
       </div>
       <div class="right">
         <Episode @changeVideo="changeVideo" :episodeList="videoList"></Episode>

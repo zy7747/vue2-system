@@ -2,10 +2,13 @@
 <template>
   <div class="paginationBox">
     <el-pagination
+      hide-on-single-page
+      layout="prev, pager, next, jumper"
+      next-text="下一页"
+      prev-text="上一页"
       v-model:current-page="page"
       v-model:page-size="pageSize"
       background
-      layout="prev, pager, next, jumper"
       :page-sizes="pageSizes"
       :total="total"
       @size-change="handleSizeChange"

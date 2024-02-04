@@ -5,7 +5,7 @@
       <el-header class="headerStyle">
         <div class="header">
           <Logo />
-          <div style="width: 30rem">
+          <div class="SearchInputBox">
             <SearchInput></SearchInput>
           </div>
 
@@ -27,6 +27,11 @@ import { HeaderLine, AppMain, Logo, Navbar } from "../components/index.ts";
 </script>
 
 <style lang="scss" scoped>
+.SearchInputBox {
+  width: 30rem;
+  height: 3rem;
+  overflow: hidden;
+}
 .layout {
   width: 100%;
   height: 100vh;
@@ -47,7 +52,7 @@ import { HeaderLine, AppMain, Logo, Navbar } from "../components/index.ts";
     padding: 0;
     width: 100%;
     height: 8rem;
-    background: url("@/assets/image/picture/xiangru-chen.jpg") 0 -320px no-repeat;
+    background: url("@/assets/image/picture/xiangru-chen.jpg") 0 no-repeat;
     background-size: 100%;
     line-height: normal;
   }

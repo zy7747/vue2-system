@@ -16,7 +16,7 @@
             justify="center"
             @click="playVideo(item)"
           >
-            <img :src="baseUrl + item.picture" alt="" style="width: 100%" />
+            <img :src="fileUrl + item.picture" alt="" style="width: 100%" />
           </div>
         </el-carousel-item>
       </el-carousel>
@@ -30,7 +30,7 @@
         class="box"
         :class="{ active: index == carouselIndex }"
       >
-        <img :src="baseUrl + item.picture" alt="" style="width: 100%" />
+        <img :src="fileUrl + item.picture" alt="" style="width: 100%" />
       </div>
     </div>
 
@@ -42,7 +42,14 @@
         v-show="index === carouselIndex"
       >
         <p class="title">{{ item.videoName }}</p>
-        <span> {{ item.profile }}</span>
+        <div>
+          <img
+            :src="fileUrl + imageList[carouselIndex].picture"
+            alt=""
+            style="width: 100%; height: 8rem"
+          />
+        </div>
+        <div class="profileText">{{ item.profile }}</div>
       </div>
     </div>
   </div>
@@ -50,7 +57,8 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-const webUrl = window.location.origin;
+const fileUrl = import.meta.env.VITE_APP_FILE_API;
+const webUrl = import.meta.env.VITE_APP_WEB_URL;
 
 const props = defineProps({
   imageList: {
@@ -64,8 +72,6 @@ const props = defineProps({
 
 const carousel: any = ref(null);
 const carouselIndex: any = ref(0);
-
-const baseUrl = import.meta.env.VITE_APP_BASE_API;
 
 const profile = ref<string>("");
 
@@ -81,7 +87,7 @@ const autoplayCarouselChange = (index: number) => {
 };
 
 function playVideo(videoInfo: any) {
-  const url = webUrl + "/#/videoView/" + videoInfo.id;
+  const url = webUrl + "/web-video/#/videoView/" + videoInfo.id;
   window.open(url, "_blank");
 }
 </script>
@@ -141,23 +147,37 @@ function playVideo(videoInfo: any) {
     background-color: transparent;
   }
 
+  .profileBox::-webkit-scrollbar {
+    width: 0; /* Chrome和Safari浏览器隐藏滚动条 */
+    height: 0;
+    background-color: transparent;
+  }
+
   .profile {
     width: 20%;
     height: 100%;
     overflow: hidden;
-
     .profileBox {
       height: 100%;
       animation: fade-in ease 1s;
       animation: tilt-in-left-1 ease 1s;
       overflow-y: auto;
-      font-size: 1rem;
-      color: #99a9bf;
+      background-color: #e1dbc7;
       .title {
-        font-size: 18px;
-        margin-bottom: 15px;
-        color: black;
+        background-color: #3b8bca;
+        padding: 5px 15px;
+        font-size: 1.25rem;
+        color: #fff;
         font-weight: 600;
+      }
+
+      .profileText {
+        padding: 5px 10px 0;
+        text-indent: 2em;
+        line-height: 1.5rem;
+        font-size: 1rem;
+        color: #99a9bf;
+        font-weight: 550;
       }
     }
   }

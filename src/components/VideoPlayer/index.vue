@@ -1,28 +1,52 @@
 <!--  -->
 <template>
   <div class="">
-    <video
-      ref="video"
-      class="video"
-      style="width: 100%; height: 40rem; object-fit: contain"
-      controls
-    >
-      <source type="video/mp4" :src="path" />
-    </video>
+    <div id="mse" class="video"></div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, defineExpose } from "vue";
+import { ref, defineExpose, onMounted } from "vue";
+import "xgplayer/dist/index.min.css";
+import Player from "xgplayer";
 
-const baseUrl = import.meta.env.VITE_APP_BASE_API;
+defineProps({
+  videoList: {
+    text: "视频集",
+    type: [Array],
+    default: () => {
+      return [];
+    },
+  },
+});
+
+const fileUrl = import.meta.env.VITE_APP_FILE_API;
 const path = ref<string>("");
-const video: any = ref(null);
+let player = ref<any>(null);
+
+onMounted(() => {
+  player.value = new Player({
+    id: "mse",
+    width: "100%",
+    height: "40rem",
+    url: path.value,
+    download: true, //设置download控件显示
+    playbackRate: [0.5, 0.75, 1, 1.5, 2],
+    screenShot: {
+      saveImg: true,
+      quality: 0.92,
+      type: "image/png",
+      format: ".png",
+    },
+    definitionActive: "click",
+  });
+});
 
 const setVideo = (src: any) => {
-  path.value = baseUrl + JSON.parse(JSON.stringify(src));
-
-  video.value.load();
+  path.value = fileUrl + JSON.parse(JSON.stringify(src));
+  player.value.src = path.value;
+  console.log(player.value);
+  player.value.play();
 };
 
 defineExpose({

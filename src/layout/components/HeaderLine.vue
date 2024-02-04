@@ -38,6 +38,7 @@ const langs = ref<any>([
 ]);
 
 const i18n = useI18n();
+
 //储存语种并进行切换
 const handleSelect = (item: any) => {
   localStorage.setItem("language", item.language);

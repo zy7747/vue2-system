@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "./auth";
 const baseUrl = import.meta.env.VITE_APP_BASE_API;
 
 const service = axios.create({
@@ -6,10 +7,20 @@ const service = axios.create({
   timeout: 5000,
 });
 
-// 请求拦截器
-service.interceptors.request.use((config) => {
-  return config;
-});
+// request拦截器
+service.interceptors.request.use(
+  (config) => {
+    // 如果存在登录用户信息，则将其设置到请求头部
+    if (getToken()) {
+      config.headers["Authorization"] = getToken();
+    }
+
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
 
 // 响应拦截器
 service.interceptors.response.use(

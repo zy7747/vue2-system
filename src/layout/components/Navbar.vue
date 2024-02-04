@@ -9,7 +9,7 @@
         v-for="(item, index) of menus"
         :key="index"
       >
-        <svg-icon :name="'svg-' + item.icon" style="height: 1rem" />
+        <svg-icon :name="item.icon" style="height: 1rem" />
         <span style="margin-left: 0.2rem">{{ item.label }}</span>
       </li>
     </ul>
@@ -36,42 +36,42 @@ const menus: any = ref<menusType[]>([
   {
     key: "/home/dashboard",
     label: t("layout.home"),
-    icon: "首页",
+    icon: "app-Google Chrome",
   },
   {
     key: "/home/movie",
     label: t("layout.movie"),
-    icon: "电影院",
+    icon: "svg-电影院",
   },
   {
     key: "/home/tv",
     label: t("layout.tv"),
-    icon: "古风_古装_紫薇",
+    icon: "app-腾讯视频",
   },
   {
     key: "/home/anime",
     label: t("layout.anime"),
-    icon: "橘猫",
+    icon: "app-哔哩哔哩",
   },
   {
     key: "/home/variety",
     label: t("layout.variety"),
-    icon: "综艺",
+    icon: "app-iQiyi",
   },
   {
     key: "/home/shorts",
     label: t("layout.shorts"),
-    icon: "短视频",
+    icon: "app-tiktok",
   },
   {
     key: "/home/original",
     label: t("layout.original"),
-    icon: "原创视频",
+    icon: "app-youtube",
   },
   {
     key: "/home/live",
     label: t("layout.live"),
-    icon: "直播",
+    icon: "app-斗鱼",
   },
 ]);
 

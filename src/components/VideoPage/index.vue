@@ -83,7 +83,6 @@ query();
   height: 100%;
   .pagination {
     padding: 20px 0;
-    // background-color: #fff;
   }
 }
 </style>

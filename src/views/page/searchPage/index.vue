@@ -5,7 +5,7 @@
       <el-header class="headerStyle">
         <div class="header">
           <Logo />
-          <div style="width: 30rem">
+          <div class="SearchInputBox">
             <SearchInput :value="queryParams.videoName"></SearchInput>
           </div>
 
@@ -101,11 +101,18 @@ getVideoInfo();
   width: 100%;
   height: calc(100% - 5rem);
 }
+
 .videoPage {
   height: 100%;
   .pagination {
     margin-top: 20px;
   }
+}
+
+.SearchInputBox {
+  width: 30rem;
+  height: 3rem;
+  overflow: hidden;
 }
 
 .layout {
@@ -123,6 +130,7 @@ getVideoInfo();
     height: 5rem;
     font-size: 0.75rem;
   }
+
   .headerStyle {
     z-index: 2;
     padding: 0;

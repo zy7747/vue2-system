@@ -8,10 +8,10 @@
  */
 export function handleTree(
   data: any,
+  rootId?: any,
   id?: any,
   parentId?: any,
-  children?: any,
-  rootId?: any
+  children?: any
 ): any {
   id = id || "id";
   parentId = parentId || "parentId";
@@ -35,24 +35,7 @@ export function handleTree(
   return treeData !== "" ? treeData : data;
 }
 
-/**
- * @description: 递归平铺树形结构的函数
- * @param {*} tree 树形
- * @return {*} 平铺后的数据
- */
-export function flattenTree(tree?: any, id?: any): any {
-  const flattenData = [];
-
-  for (const node of tree) {
-    const { id, children } = node;
-    // 拷贝节点信息到平铺结构
-    flattenData.push(node);
-
-    // 递归处理子节点
-    if (children && children.length) {
-      flattenData.push(...flattenTree(children, id));
-    }
-  }
-
-  return flattenData;
+//判断对象是否为空
+export function isEmpty(obj: any) {
+  return Object.keys(obj).length === 0;
 }

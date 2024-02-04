@@ -1,9 +1,9 @@
 <!--  -->
 <template>
   <div class="videoBox" @click="videoView(videoInfo)">
-    <div v-if="!loading" style="width: 100%" v-show="videoInfo.picture">
+    <div v-if="!loading" style="width: 100%; height: 100%">
       <div class="videoImg">
-        <img :src="baseUrl + videoInfo.picture" />
+        <img :src="fileUrl + videoInfo.picture" />
       </div>
 
       <div class="info">
@@ -47,8 +47,9 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const webUrl = window.location.origin;
-const baseUrl = import.meta.env.VITE_APP_BASE_API;
+const fileUrl = import.meta.env.VITE_APP_FILE_API;
+const webUrl = import.meta.env.VITE_APP_WEB_URL;
+
 const loading = ref<Boolean>(true);
 
 defineProps({
@@ -62,7 +63,8 @@ defineProps({
 });
 
 function videoView(videoInfo: any) {
-  const url = webUrl + "/#/videoView/" + videoInfo.id;
+  const url = webUrl + "/web-video/#/videoView/" + videoInfo.id;
+
   window.open(url, "_blank");
 }
 
@@ -77,36 +79,37 @@ loadingChange();
 
 <style lang="scss" scoped>
 .videoBox {
+  height: 15rem;
   border-radius: 0.3rem;
   overflow: hidden;
-  margin: 5px 0.5rem;
+  margin: 0.8rem 0.8rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   background-color: #33343f;
   cursor: pointer;
   .videoImg {
     width: 100%;
-    height: 10rem;
+    height: 11rem;
     overflow: hidden;
-
     img {
       transition: transform 0.5s;
       width: 100%;
-      height: 10rem;
     }
   }
 
   .title {
     font-weight: 550;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #fff;
-    line-height: 1rem;
-    margin-bottom: 0.4rem;
+    line-height: 1.3rem;
+    margin-bottom: 0.6rem;
   }
 
   .title:hover {
     color: rgb(58, 122, 186);
   }
+
   .info {
+    height: 4rem;
     padding: 5px;
   }
 
@@ -119,9 +122,9 @@ loadingChange();
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      line-height: 0.8rem;
+      line-height: 1rem;
       color: #dedee0;
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   }
 
@@ -132,10 +135,13 @@ loadingChange();
     text-overflow: ellipsis;
   }
 }
-
+//盒子移入阴影
 .videoBox:hover {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 2px solid #3b8bca;
 }
+//图片放大
 .videoBox:hover .videoImg img {
   transform: scale(1.25);
 }

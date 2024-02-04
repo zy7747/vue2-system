@@ -15,7 +15,10 @@
             </div>
             <div class="more">
               <el-button size="small" @click="more(key)">
-                {{ "查看全部" }}<el-icon><ArrowRight /></el-icon>
+                {{ "查看全部" }}
+                <el-icon>
+                  <ArrowRight />
+                </el-icon>
               </el-button>
             </div>
           </div>
@@ -60,39 +63,15 @@ const more = (key: any) => {
 </script>
 
 <style lang="scss" scoped>
-/* For demo */
-:deep(.slick-dots) {
-  position: relative;
-  height: auto;
-}
-:deep(.slick-slide img) {
-  border: 5px solid #fff;
-  display: block;
-  margin: auto;
-  max-width: 80%;
-}
-:deep(.slick-arrow) {
-  display: none !important;
-}
-:deep(.slick-thumb) {
-  bottom: 0px;
-}
-:deep(.slick-thumb li) {
-  width: 60px;
-  height: 45px;
-}
-:deep(.slick-thumb li img) {
-  width: 100%;
-  height: 100%;
-  filter: grayscale(100%);
-  display: block;
-}
-:deep .slick-thumb li.slick-active img {
-  filter: grayscale(0%);
-}
 .carouselPic {
   width: 100%;
   margin-bottom: 15px;
+}
+
+.videoBoxList::-webkit-scrollbar {
+  width: 0; /* Chrome和Safari浏览器隐藏滚动条 */
+  height: 0;
+  background-color: transparent;
 }
 
 .hot {
@@ -105,11 +84,11 @@ const more = (key: any) => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 1rem;
+        margin: 0 1rem 0.5rem;
         height: 15%;
         .title {
-          font-size: 18px;
-          font-weight: 700;
+          font-size: 1.2rem;
+          font-weight: 600;
         }
       }
       .videoBoxList {
@@ -117,9 +96,10 @@ const more = (key: any) => {
         overflow-y: hidden;
         display: flex;
         width: 100%;
+        margin-bottom: 15px;
         .videoBox {
           margin-right: 1rem;
-          width: 15rem;
+          width: 19rem;
         }
       }
     }

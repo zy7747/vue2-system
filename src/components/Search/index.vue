@@ -3,7 +3,6 @@
   <div class="SearchInput">
     <div class="searchBox">
       <el-autocomplete
-        style="width: 100%"
         v-model="keywords"
         :fetch-suggestions="querySearch"
         placeholder="视频搜索"
@@ -17,8 +16,9 @@
           </div>
         </template>
         <template #append>
-          <el-button text :icon="Search" @click="searchVideo(keywords)">
-          </el-button>
+          <div class="SearchIcon" @click="searchVideo(keywords)">
+            <SearchIcon style="width: 1rem; height: 1rem" />
+          </div>
         </template>
       </el-autocomplete>
     </div>
@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from "vue";
-import { Search } from "@element-plus/icons-vue";
+import { Search as SearchIcon } from "@element-plus/icons-vue";
 import { videoPage } from "@/apis/video";
 import { router } from "@/router";
 
@@ -46,8 +46,6 @@ const keywords = ref<string>(props.value);
 watch(
   () => props.value,
   (value: any) => {
-    console.log(10, value);
-
     keywords.value = value;
   }
 );
@@ -77,13 +75,47 @@ function searchVideo(keyword: any) {
   height: 100%;
   display: flex;
 }
+.SearchIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchIcon:hover {
+  color: rgb(127, 240, 255);
+  cursor: pointer;
+}
+
+.value {
+  width: 24rem;
+  overflow: hidden;
+  text-overflow: ellipsis; //使用省略号代替溢出文本
+  white-space: nowrap;
+}
+
+:deep(.el-input-group__append) {
+  padding: 0;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .searchBox {
   width: 100%;
   height: 100%;
-  padding: 3px 5px;
   background-color: #fff;
   border-radius: 30px;
+  overflow: hidden;
+  :deep(.el-autocomplete) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  :deep(.el-input) {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 :deep(.el-input__wrapper) {

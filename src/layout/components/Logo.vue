@@ -2,7 +2,6 @@
 <template>
   <div class="logo" @click="home">
     <div class="logoImage">
-      <!-- <img src="" alt="" /> -->
       <svg-icon
         :name="'app-哔哩哔哩'"
         class="svgIcon"
@@ -26,7 +25,6 @@ const home = () => {
 <style lang="scss" scoped>
 .logo {
   padding-left: 1.5rem;
-  width: 15rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -34,8 +32,10 @@ const home = () => {
   .app-name {
     margin-left: 0.5rem;
     font-size: 1.5rem;
-    font-weight: 550;
+    font-weight: 700;
     line-height: 2rem;
+    color: linear-gradient(to right, #aebaca, #d5d9df);
+    text-shadow: 1px -2px 0px black; /* 描边效果 */
   }
 
   .logoImage {

@@ -92,7 +92,7 @@ const changeVideo = (src: string) => {
 }
 .videoTitle {
   width: 100%;
-  height: 8rem;
+  height: 5rem;
 
   .title {
     font-weight: 700;

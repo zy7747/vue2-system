@@ -29,7 +29,7 @@
     </div>
     <div class="videoPlayer">
       <div class="left">
-        <VideoPlayer :videoList="videoList" ref="videoPlayer"></VideoPlayer>
+        <VideoPlayer ref="videoPlayer"></VideoPlayer>
       </div>
       <div class="right">
         <Episode @changeVideo="changeVideo" :episodeList="videoList"></Episode>
@@ -51,7 +51,8 @@
 
 <script lang="ts" setup>
 import { playNum, videoDetail } from "@/apis/video";
-import { ref } from "vue";
+
+import { ref, nextTick } from "vue";
 
 const props = defineProps({
   id: {
@@ -69,11 +70,12 @@ const videoPlayer: any = ref();
 
 //初始化渲染
 videoDetail({ id: props.id }).then((res) => {
-  const src = res.data.videoList[0].url;
   videoList.value = res.data.videoList;
   videoInfo.value = res.data;
-  //播放视频
-  changeVideo(src);
+
+  nextTick(() => {
+    videoPlayer.value.createVideo(videoList.value);
+  });
 });
 
 //修改或者播放视频

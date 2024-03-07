@@ -6,32 +6,22 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineExpose, onMounted } from "vue";
+import { ref, defineExpose } from "vue";
 import "xgplayer/dist/index.min.css";
 import Player from "xgplayer";
-
-const prop = defineProps({
-  videoList: {
-    text: "视频集",
-    type: [Array],
-    default: () => {
-      return [];
-    },
-  },
-});
 
 const fileUrl = import.meta.env.VITE_APP_FILE_API;
 const path = ref<string>("");
 let player = ref<any>(null);
 
-onMounted(() => {
-  const urlList = prop.videoList.map((item: any) => fileUrl + item.url);
+function createVideo(videoList: any) {
+  const urlList = videoList.map((item: any) => fileUrl + item.url);
 
   player.value = new Player({
     id: "mse",
     width: "100%",
     height: "40rem",
-    url: path.value,
+    url: videoList[0].url,
     download: true, //设置download控件显示
     playbackRate: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
     pip: true,
@@ -63,7 +53,15 @@ onMounted(() => {
       volume: 0.2, //音量调整步长，默认0.1
     },
   });
-});
+
+  player.value.once("complete", () => {
+    setVideo(videoList[0].url);
+  });
+
+  player.value.on("play", function (e: any) {
+    console.log(e);
+  });
+}
 
 const setVideo = (src: any) => {
   path.value = fileUrl + JSON.parse(JSON.stringify(src));
@@ -75,13 +73,13 @@ const setVideo = (src: any) => {
     { name: "4K", url: path.value },
     { name: "720P", url: path.value },
   ]);
-  console.log(player.value);
 
   player.value.play();
 };
 
 defineExpose({
   setVideo,
+  createVideo,
 });
 </script>
 

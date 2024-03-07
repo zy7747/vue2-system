@@ -2,8 +2,13 @@
 <template>
   <div class="videoView">
     <div class="videoViewHeader">
-      <div class="SearchInputBox">
-        <SearchInput :value="queryParams.videoName"></SearchInput>
+      <div class="header">
+        <Logo />
+        <div class="SearchInputBox">
+          <SearchInput :value="queryParams.videoName"></SearchInput>
+        </div>
+
+        <HeaderLine />
       </div>
     </div>
     <div class="videoViewPageBox">
@@ -14,6 +19,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import { HeaderLine, Logo } from "@/layout/components/index.ts";
 const id = window.location.hash.replace("#/videoView/", "");
 
 const queryParams = ref<any>({
@@ -45,6 +51,24 @@ const queryParams = ref<any>({
     border-bottom: 1px solid #bbbbbb;
     background: url("@/assets/image/picture/xiangru-chen.jpg") 0px -240px no-repeat;
     z-index: 1;
+    .header {
+      top: 0;
+      position: sticky;
+      color: #fff;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 5rem;
+      font-size: 0.75rem;
+    }
+
+    .SearchInputBox {
+      width: 30rem;
+      height: 3rem;
+      overflow: hidden;
+    }
   }
   .videoViewPageBox {
     display: flex;
